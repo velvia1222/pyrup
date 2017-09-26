@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Pyrup　-　{{ site_name }}　-　ページ{{ mode_name }}</title>
+		<script type="text/javascript" src="/static/js/common.js"></script>
+	</head>
+	<body>
+		<p>●{{ site_name }}　-　ページ{{ mode_name }}</p>
+		<form action="/page/register" method="POST">
+			<input type="hidden" name="mode" value="{{ mode }}" />
+			<input type="hidden" name="site_id" value="{{ site_id }}" />
+			<input type="hidden" name="site_name" value="{{ site_name }}" />
+			<input type="hidden" name="page_id" value="{{ page_id }}" />
+			<table>
+				<tr valign="top">
+					<td align="right">{{ form.page_name.label }}:</td>
+					<td>
+						<input type="text" name="page_name" value="{{ form.page_name.data }}" />
+						{% if form.page_name.errors %}
+							{% for error in form.page_name.errors %}
+								<br>
+								<font color="red">{{ error }}</font>
+							{% endfor %}
+						{% endif %}
+					</td>
+				</tr>
+				<tr valign="top">
+					<td align="right">{{ form.page_seq.label }}:</td>
+					<td>
+						<input type="text" name="page_seq" value="{{ form.page_seq.data }}" />
+						{% if form.page_seq.errors %}
+							{% for error in form.page_seq.errors %}
+								<br>
+								<font color="red">{{ error }}</font>
+							{% endfor %}
+						{% endif %}
+					</td>
+				</tr>
+			</table>
+			<br>
+			<input type="submit" name="register" value="登録する" />
+			<input type="button" value="戻る" onclick="movePageList({{ site_id }}); return false;" />
+		</form>
+	</body>
+</html>

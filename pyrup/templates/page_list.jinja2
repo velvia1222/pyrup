@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>pyrup　-　{{ site_name }}</title>
+		<script type="text/javascript" src="/static/js/common.js" ></script>
+		<script tyep="text/javascript">
+			function removePage(page_id) {
+				var elem = document.getElementById("remove_page_id");
+				elem.value = page_id;
+				return confirmRemove();
+			}
+		</script>
+	</head>
+	<body>
+	{% if page_list %}
+		<p>●{{ site_name }}</p>
+		<form action="/page/list" method="POST">
+		<input type="hidden" name="site_id" value="{{ site_id }}" />
+		<input type="hidden" id="remove_page_id" name="remove_page_id" value="" />
+		<table>
+		{% for page in page_list %}
+			<tr>
+				<td>
+					<li><a href="/content/list?page_id={{ page.id }}">{{ page.name }}</a></li>
+				</td>
+				<td>
+					　<input type="button" value="編集" onclick="movePageEdit({{ page.id }}); return false;" />
+					<input type="submit" name="page_remove" value="削除" onclick="return removePage({{ page.id }});" />
+				</td>
+			</tr>
+		{% endfor %}
+		</table>
+		</form>
+	{% else %}
+		<p>ページが登録されていません。</p>
+	{% endif %}
+		<br><br>
+		<input type="button" value="ページ追加" onclick="movePageAdd({{ site_id }}); return false;" />
+		<input type="button" value="戻る" onclick="moveSiteList(); return false;" />
+	</body>
+</html>

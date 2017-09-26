@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Pyrup　-　サイト{{ mode_name }}</title>
+		<script type="text/javascript" src="/static/js/common.js"></script>
+	</head>
+	<body>
+		<p>●サイト{{ mode_name }}</p>
+		<form action="/site/register" method="POST">
+			<input type="hidden" name="mode" value="{{ mode }}" />
+			<input type="hidden" name="site_id" value="{{ site_id }}" />
+			<table>
+				<tr valign="top">
+					<td align="right">{{ form.site_name.label }}:</td>
+					<td>
+						<input type="text" name="site_name" value="{{ form.site_name.data }}" maxlength="64" />
+						{% if form.site_name.errors %}
+							{% for error in form.site_name.errors %}
+								<br>
+								<font color="red">{{ error }}</font>
+							{% endfor %}
+						{% endif %}
+					</td>
+				</tr>
+				<tr valign="top">
+					<td align="right">{{ form.site_seq.label }}:</td>
+					<td>
+						<input type="text" name="site_seq" value="{{ form.site_seq.data }}" maxlength="9" />
+						{% if form.site_seq.errors %}
+							{% for error in form.site_seq.errors %}
+								<br>
+								<font color="red">{{ error }}</font>
+							{% endfor %}
+						{% endif %}
+					</td>
+				</tr>
+			</table>
+			<br>
+			<input type="submit" name="register" value="登録する" />
+			<input type="button" value="戻る" onclick="moveSiteList(); return false;" />
+		</form>
+	</body>
+</html>

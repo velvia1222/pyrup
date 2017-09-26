@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Pyrup　-　サイト一覧</title>
+		<script type="text/javascript" src="/static/js/common.js"></script>
+		<script tyep="text/javascript">
+			function removeSite(site_id) {
+				var elem = document.getElementById("remove_site_id");
+				elem.value = site_id;
+				return confirmRemove();
+			}
+		</script>
+	</head>
+	<body>
+	{% if site_list | first %}
+		<p>●サイト一覧</p>
+		<form action="/site/list" method="POST">
+		<input type="hidden" id="remove_site_id" name="remove_site_id" value="" />
+		<table>
+		{% for site in site_list %}
+			<tr>
+				<td>
+					<li><a href="/page/list?site_id={{ site.id }}">{{ site.name }}</a></li>
+				</td>
+				<td align="center">
+					　<input type="button" value="編集" onclick="moveSiteEdit({{ site.id }}); return false;" />
+					<input type="submit" name="site_remove" value="削除" onclick="return removeSite({{ site.id }});" />
+				</td>
+			</tr>
+		{% endfor %}
+		</table>
+		</form>
+	{% else %}
+		<p>サイトが登録されていません。</p>
+	{% endif %}
+		<br><br>
+		<input type="button" value="サイト追加" onclick="moveSiteAdd(); return false;" />
+	</body>
+</html>
