@@ -19,6 +19,9 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
+    'uwsgi',
+    'WTForms',
+    'bcrypt',
 ]
 
 tests_require = [

@@ -1,10 +1,12 @@
-import logging
-
+from logging import getLogger
+from logging.config import fileConfig
 
 class AbstractView(object):
     def __init__(self, request):
         self.request = request
-        self.logger = logging.getLogger(
+        fileConfig(request.registry.settings['logging.config'],
+                disable_existing_loggers=False)
+        self.logger = getLogger(
             self.__module__ + '.' + self.__class__.__name__)
 
     def __call__(self):
