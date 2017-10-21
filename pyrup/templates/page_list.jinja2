@@ -14,8 +14,9 @@
 
 {% block content %}
 {% if page_list %}
-    <p><strong>{{ site_name }}</strong></p>
-    <form action="/page/list" method="POST">
+<p><strong>{{ site_name }}</strong></p>
+<form action="/page/list" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ get_csrf_token() }}">
     <input type="hidden" name="site_id" value="{{ site_id }}" />
     <input type="hidden" id="remove_page_id" name="remove_page_id" value="" />
     <table>
@@ -31,11 +32,11 @@
         </tr>
     {% endfor %}
     </table>
-    </form>
+</form>
 {% else %}
-    <p>ページが登録されていません。</p>
+<p>ページが登録されていません。</p>
 {% endif %}
-    <br><br>
-    <input type="button" value="ページ追加" onclick="movePageAdd({{ site_id }}); return false;" />
-    <input type="button" value="戻る" onclick="moveSiteList(); return false;" />
+<br><br>
+<input type="button" value="ページ追加" onclick="movePageAdd({{ site_id }}); return false;" />
+<input type="button" value="戻る" onclick="moveSiteList(); return false;" />
 {% endblock content %}

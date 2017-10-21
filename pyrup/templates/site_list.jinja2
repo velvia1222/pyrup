@@ -14,8 +14,9 @@
 
 {% block content %}
 {% if site_list | first %}
-    <p><strong>サイト一覧</strong></p>
-    <form action="/site/list" method="POST">
+<p><strong>サイト一覧</strong></p>
+<form action="/site/list" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ get_csrf_token() }}">
     <input type="hidden" id="remove_site_id" name="remove_site_id" value="" />
     <table>
     {% for site in site_list %}
@@ -30,10 +31,10 @@
         </tr>
     {% endfor %}
     </table>
-    </form>
+</form>
 {% else %}
-    <p>サイトが登録されていません。</p>
+<p>サイトが登録されていません。</p>
 {% endif %}
-    <br><br>
-    <input type="button" value="サイト追加" onclick="moveSiteAdd(); return false;" />
+<br><br>
+<input type="button" value="サイト追加" onclick="moveSiteAdd(); return false;" />
 {% endblock content %}

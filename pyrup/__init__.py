@@ -1,10 +1,12 @@
 from pyramid.config import Configurator
+from pyramid.session import SignedCookieSessionFactory
 
 
 def main(global_config, **settings):
-    """ This function returns a Pyramid WSGI application.
-    """
+    session_factory = SignedCookieSessionFactory(settings['session.secret'], secure=settings['session.secure'], httponly=True)
     config = Configurator(settings=settings)
+    config.set_session_factory(session_factory)
+    config.set_default_csrf_options(require_csrf=True)
     config.include('pyramid_jinja2')
     config.include('.models')
     config.include('.routes')

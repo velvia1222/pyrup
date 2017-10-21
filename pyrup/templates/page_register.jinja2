@@ -5,6 +5,7 @@
 {% block content %}
 <p><strong>{{ site_name }}　-　ページ{{ mode_name }}</strong></p>
 <form action="/page/register" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ get_csrf_token() }}">
     <input type="hidden" name="mode" value="{{ mode }}" />
     <input type="hidden" name="site_id" value="{{ site_id }}" />
     <input type="hidden" name="site_name" value="{{ site_name }}" />
