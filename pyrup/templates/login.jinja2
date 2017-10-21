@@ -9,6 +9,7 @@
     {{ message }}
 </p>
 <form action="{{ url }}" method="post">
+<input type="hidden" name="csrf_token" value="${get_csrf_token()}">
 <input type="hidden" name="next" value="{{ next_url }}">
 <div class="form-group">
     <label for="login">ユーザ名　</label>

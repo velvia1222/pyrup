@@ -15,6 +15,7 @@
 {% block content %}
 <p><strong>{{ site_name }}　-　{{ page_name }}　-　コンテンツ{{ mode_name }}</strong></p>
 <form action="/content/register" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ get_csrf_token() }}">
     <input type="hidden" name="mode" value="{{ mode }}" />
     <input type="hidden" name="site_name" value="{{ site_name }}" />
     <input type="hidden" name="page_id" value="{{ page_id }}" />
