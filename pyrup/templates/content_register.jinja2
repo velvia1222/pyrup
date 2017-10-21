@@ -27,9 +27,9 @@
     <input type="hidden" id="remove_file_type" name="remove_file_type" value="" />
     <table cellpadding="5">
         <tr valign="top">
-            <td align="right">{{ form.content_text.label }}:</td>
+            <td align="right" width="80">{{ form.content_text.label }}</td>
             <td>
-                <textarea name="content_text" rows="5" cols="40">{{ form.content_text.data }}</textarea>
+                <textarea name="content_text" rows="3">{{ form.content_text.data }}</textarea>
                 {% if form.content_text.errors %}
                     {% for error in form.content_text.errors %}
                         <br>
@@ -39,7 +39,7 @@
             </td>
         </tr>
         <tr valign="top">
-            <td align="right">{{ form.image_file.label }}:</td>
+            <td align="right"><label for="content_text">画像<br>ファイル</label></td>
             <td>
                 {{ image_filename }}
                 {% if image_file_id %}
@@ -56,7 +56,7 @@
             </td>
         </tr>
         <tr valign="top">
-            <td align="right">{{ form.attach_file.label }}:</td>
+            <td align="right"><label for="content_text">添付<br>ファイル</label></td>
             <td>
                 {{ attach_filename }}
                 {% if attach_file_id %}
@@ -73,7 +73,7 @@
             </td>
         </tr>
         <tr valign="top">
-            <td align="right">{{ form.content_seq.label }}:</td>
+            <td align="right">{{ form.content_seq.label }}</td>
             <td>
                 <input type="text" name="content_seq" value="{{ form.content_seq.data }}" />
                 {% if form.content_seq.errors %}

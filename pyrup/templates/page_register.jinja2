@@ -11,7 +11,7 @@
     <input type="hidden" name="page_id" value="{{ page_id }}" />
     <table>
         <tr valign="top">
-            <td align="right">{{ form.page_name.label }}:</td>
+            <td align="right">{{ form.page_name.label }}</td>
             <td>
                 <input type="text" name="page_name" value="{{ form.page_name.data }}" />
                 {% if form.page_name.errors %}
@@ -23,7 +23,7 @@
             </td>
         </tr>
         <tr valign="top">
-            <td align="right">{{ form.page_seq.label }}:</td>
+            <td align="right">{{ form.page_seq.label }}</td>
             <td>
                 <input type="text" name="page_seq" value="{{ form.page_seq.data }}" />
                 {% if form.page_seq.errors %}
