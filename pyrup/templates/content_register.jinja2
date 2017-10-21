@@ -1,91 +1,92 @@
-<html>
-	<head>
-		<title>Pyrup　-　{{ site_name }}　-　{{ page_name }}　-　コンテンツ{{ mode_name }}</title>
-		<script type="text/javascript" src="/static/js/common.js"></script>
-		<script tyep="text/javascript">
-			function removeContentFile(file_type) {
-				var elem = document.getElementById("remove_file_type");
-				elem.value = file_type;
-				return confirmRemove();
-			}
-		</script>
-	</head>
-	<body>
-		<p>●{{ site_name }}　-　{{ page_name }}　-　コンテンツ{{ mode_name }}</p>
-		<form action="/content/register" method="POST" enctype="multipart/form-data">
-			<input type="hidden" name="mode" value="{{ mode }}" />
-			<input type="hidden" name="site_name" value="{{ site_name }}" />
-			<input type="hidden" name="page_id" value="{{ page_id }}" />
-			<input type="hidden" name="page_name" value="{{ page_name }}" />
-			<input type="hidden" name="content_id" value="{{ content_id }}" />
-			<input type="hidden" name="image_file_id" value="{{ image_file_id }}" />
-			<input type="hidden" name="image_filename" value="{{ image_filename }}" />
-			<input type="hidden" name="attach_file_id" value="{{ attach_file_id }}" />
-			<input type="hidden" name="attach_filename" value="{{ attach_filename }}" />
-			<input type="hidden" id="remove_file_type" name="remove_file_type" value="" />
-			<table cellpadding="5">
-				<tr valign="top">
-					<td align="right">{{ form.content_text.label }}:</td>
-					<td>
-						<textarea name="content_text" rows="5" cols="40">{{ form.content_text.data }}</textarea>
-						{% if form.content_text.errors %}
-							{% for error in form.content_text.errors %}
-								<br>
-								<font color="red">{{ error }}</font>
-							{% endfor %}
-						{% endif %}
-					</td>
-				</tr>
-				<tr valign="top">
-					<td align="right">{{ form.image_file.label }}:</td>
-					<td>
-						{{ image_filename }}
-						{% if image_file_id %}
-							　<input type="submit" name="remove_file" value="削除" onclick='return removeContentFile("image");'>
-						{% endif %}
-						<br>
-						{{ form.image_file() }}
-						{% if form.image_file.errors %}
-							{% for error in form.image_file.errors %}
-								<br>
-								<font color="red">{{ error }}</font>
-							{% endfor %}
-						{% endif %}
-					</td>
-				</tr>
-				<tr valign="top">
-					<td align="right">{{ form.attach_file.label }}:</td>
-					<td>
-						{{ attach_filename }}
-						{% if attach_file_id %}
-							　<input type="submit" name="remove_file" value="削除" onclick='return removeContentFile("attach");'>
-						{% endif %}
-						<br>
-						{{ form.attach_file() }}
-						{% if form.attach_file.errors %}
-							{% for error in form.attach_file.errors %}
-								<br>
-								<font color="red">{{ error }}</font>
-							{% endfor %}
-						{% endif %}
-					</td>
-				</tr>
-				<tr valign="top">
-					<td align="right">{{ form.content_seq.label }}:</td>
-					<td>
-						<input type="text" name="content_seq" value="{{ form.content_seq.data }}" />
-						{% if form.content_seq.errors %}
-							{% for error in form.content_seq.errors %}
-								<br>
-								<font color="red">{{ error }}</font>
-							{% endfor %}
-						{% endif %}
-					</td>
-				</tr>
-			</table>
-			<br>
-			<input type="submit" name="register" value="登録する" />
-			<input type="button" value="戻る" onclick="moveContentList({{ page_id }}); return false;" />
-		</form>
-	</body>
-</html>
+{% extends 'layout.jinja2' %}
+
+{% block title %}{{ site_name }} - {{ page_name }} - コンテンツ{{ mode_name }}{% endblock title %}
+
+{% block head %}
+<script tyep="text/javascript">
+    function removeContentFile(file_type) {
+        var elem = document.getElementById("remove_file_type");
+        elem.value = file_type;
+        return confirmRemove();
+    }
+</script>
+{% endblock head %}
+
+{% block content %}
+<p><strong>{{ site_name }}　-　{{ page_name }}　-　コンテンツ{{ mode_name }}</strong></p>
+<form action="/content/register" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="mode" value="{{ mode }}" />
+    <input type="hidden" name="site_name" value="{{ site_name }}" />
+    <input type="hidden" name="page_id" value="{{ page_id }}" />
+    <input type="hidden" name="page_name" value="{{ page_name }}" />
+    <input type="hidden" name="content_id" value="{{ content_id }}" />
+    <input type="hidden" name="image_file_id" value="{{ image_file_id }}" />
+    <input type="hidden" name="image_filename" value="{{ image_filename }}" />
+    <input type="hidden" name="attach_file_id" value="{{ attach_file_id }}" />
+    <input type="hidden" name="attach_filename" value="{{ attach_filename }}" />
+    <input type="hidden" id="remove_file_type" name="remove_file_type" value="" />
+    <table cellpadding="5">
+        <tr valign="top">
+            <td align="right">{{ form.content_text.label }}:</td>
+            <td>
+                <textarea name="content_text" rows="5" cols="40">{{ form.content_text.data }}</textarea>
+                {% if form.content_text.errors %}
+                    {% for error in form.content_text.errors %}
+                        <br>
+                        <font color="red">{{ error }}</font>
+                    {% endfor %}
+                {% endif %}
+            </td>
+        </tr>
+        <tr valign="top">
+            <td align="right">{{ form.image_file.label }}:</td>
+            <td>
+                {{ image_filename }}
+                {% if image_file_id %}
+                    　<input type="submit" name="remove_file" value="削除" onclick='return removeContentFile("image");'>
+                {% endif %}
+                <br>
+                {{ form.image_file() }}
+                {% if form.image_file.errors %}
+                    {% for error in form.image_file.errors %}
+                        <br>
+                        <font color="red">{{ error }}</font>
+                    {% endfor %}
+                {% endif %}
+            </td>
+        </tr>
+        <tr valign="top">
+            <td align="right">{{ form.attach_file.label }}:</td>
+            <td>
+                {{ attach_filename }}
+                {% if attach_file_id %}
+                    　<input type="submit" name="remove_file" value="削除" onclick='return removeContentFile("attach");'>
+                {% endif %}
+                <br>
+                {{ form.attach_file() }}
+                {% if form.attach_file.errors %}
+                    {% for error in form.attach_file.errors %}
+                        <br>
+                        <font color="red">{{ error }}</font>
+                    {% endfor %}
+                {% endif %}
+            </td>
+        </tr>
+        <tr valign="top">
+            <td align="right">{{ form.content_seq.label }}:</td>
+            <td>
+                <input type="text" name="content_seq" value="{{ form.content_seq.data }}" />
+                {% if form.content_seq.errors %}
+                    {% for error in form.content_seq.errors %}
+                        <br>
+                        <font color="red">{{ error }}</font>
+                    {% endfor %}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <br>
+    <input type="submit" name="register" value="登録する" />
+    <input type="button" value="戻る" onclick="moveContentList({{ page_id }}); return false;" />
+</form>
+{% endblock content %}

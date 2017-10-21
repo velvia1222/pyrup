@@ -1,47 +1,48 @@
-<html>
-	<head>
-		<title>Pyrup　-　{{ site.name }}　-　{{ page.name }}</title>
-		<script type="text/javascript" src="/static/js/common.js"></script>
-		<script tyep="text/javascript">
-			function removeContent(content_id) {
-				var elem = document.getElementById("remove_content_id");
-				elem.value = content_id;
-				return confirmRemove();
-			}
-		</script>
-	</head>
-	<body>
-	{% if content_list | first %}
-		<p>●{{ site.name }}　-　{{ page.name }}</p>
-		<form action="/content/list" method="POST">
-		<input type="hidden" name="page_id" value="{{ page.id }}" />
-		<input type="hidden" id="remove_content_id" name="remove_content_id" value="" />
-		<br>
-		{% for content, image, attach in content_list %}
-			{% if content.text %}
-				{% autoescape false %}
-				{{ content.text | e | replace("\r\n", "<br>") | replace("\n", "<br>") }}
-				{% endautoescape %}
-				<br>
-			{% endif %}
-			{% if content.image_file_id %}
-				<img src="/download?mode=inline&file_id={{ content.image_file_id }}" height="400" />
-				<br>
-			{% endif %}
-			{% if content.attach_file_id %}
-				<a href="/download?mode=attach&file_id={{ content.attach_file_id }}">{{ attach.name }}</a>
-				<br>
-			{% endif %}
-			<input type="button" value="編集" onclick="moveContentEdit({{ content.id }}); return false;" />
-			<input type="submit" name="content_remove" value="削除" onclick="return removeContent({{ content.id }});" />
-			<br><br>
-		{% endfor %}
-		</form>
-	{% else %}
-		<p>コンテンツが登録されていません。</p>
-	{% endif %}
-		<br><br>
-		<input type="button" value="コンテンツ追加" onclick="moveContentAdd({{ page.id }}); return false;" />
-		<input type="button" value="戻る" onclick="movePageList({{ site.id }}); return false;" />
-	</body>
-</html>
+{% extends 'layout.jinja2' %}
+
+{% block title %}{{ site.name }} - {{ page.name }}{% endblock title %}
+
+{% block head %}
+<script tyep="text/javascript">
+    function removeContent(content_id) {
+        var elem = document.getElementById("remove_content_id");
+        elem.value = content_id;
+        return confirmRemove();
+    }
+</script>
+{% endblock head %}
+
+{% block content %}
+{% if content_list | first %}
+    <p><strong>{{ site.name }}　-　{{ page.name }}</strong></p>
+    <form action="/content/list" method="POST">
+    <input type="hidden" name="page_id" value="{{ page.id }}" />
+    <input type="hidden" id="remove_content_id" name="remove_content_id" value="" />
+    <br>
+    {% for content, image, attach in content_list %}
+        {% if content.text %}
+            {% autoescape false %}
+            {{ content.text | e | replace("\r\n", "<br>") | replace("\n", "<br>") }}
+            {% endautoescape %}
+            <br>
+        {% endif %}
+        {% if content.image_file_id %}
+            <img src="/download?mode=inline&file_id={{ content.image_file_id }}" height="400" />
+            <br>
+        {% endif %}
+        {% if content.attach_file_id %}
+            <a href="/download?mode=attach&file_id={{ content.attach_file_id }}">{{ attach.name }}</a>
+            <br>
+        {% endif %}
+        <input type="button" value="編集" onclick="moveContentEdit({{ content.id }}); return false;" />
+        <input type="submit" name="content_remove" value="削除" onclick="return removeContent({{ content.id }});" />
+        <br><br>
+    {% endfor %}
+    </form>
+{% else %}
+    <p>コンテンツが登録されていません。</p>
+{% endif %}
+    <br><br>
+    <input type="button" value="コンテンツ追加" onclick="moveContentAdd({{ page.id }}); return false;" />
+    <input type="button" value="戻る" onclick="movePageList({{ site.id }}); return false;" />
+{% endblock content %}

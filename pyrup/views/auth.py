@@ -35,7 +35,7 @@ class Login(AbstractView):
                     user.failed_count += 1
                     if user.failed_count >= MAX_FAILED_COUNT:
                         user.locked = 1
-            message = 'Failed login'
+            message = 'ログインに失敗しました'
 
         return dict(
             message=message,
