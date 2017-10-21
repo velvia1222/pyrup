@@ -8,8 +8,10 @@ from pyramid.view import (
     view_config,
 )
 from .abstract_view import AbstractView
-from ..models import User
+from ..repositories.user import UserRepository
 
+
+MAX_FAILED_COUNT = 5
 
 @view_config(route_name='login', renderer='../templates/login.jinja2')
 class Login(AbstractView):
@@ -20,12 +22,19 @@ class Login(AbstractView):
         message = ''
         login = ''
         if 'form.submitted' in self.request.params:
+            user_repo = UserRepository(self.request.dbsession)
             login = self.request.params['login']
             password = self.request.params['password']
-            user = self.request.dbsession.query(User).filter_by(name=login).first()
-            if user is not None and user.check_password(password):
-                headers = remember(self.request, user.id)
-                return HTTPFound(location=next_url, headers=headers)
+            user = user_repo.select(login)
+            if user is not None and not user.is_locked():
+                if user.check_password(password):
+                    user.failed_count = 0
+                    headers = remember(self.request, user.id)
+                    return HTTPFound(location=next_url, headers=headers)
+                else:
+                    user.failed_count += 1
+                    if user.failed_count >= MAX_FAILED_COUNT:
+                        user.locked = 1
             message = 'Failed login'
 
         return dict(

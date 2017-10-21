@@ -24,3 +24,4 @@ production.ini
 asset/
 log/
 *.sqlite
+pyrup/scripts/initializedb.py
