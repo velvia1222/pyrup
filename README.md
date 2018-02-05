@@ -1,7 +1,8 @@
-# Pyrup
+# pyrup
 ファイルアップローダー。約３TBまで格納可
+- プラットフォーム：raspberry pi3
 - WEBサーバー：nginx
-- コンテナ：uwsgi
+- WEBコンテナ：uwsgi
 - 言語：python3
 - WEBフレームワーク：pyramid
 - ORM：sqlalchemy
@@ -9,6 +10,9 @@
 - SSL：Let's Encrypt
 
 ## インストール
+### raspbianのインストールと基本設定
+- proto-outgoとほぼ同じのため省略
+
 ### aptを使用して必要なライブラリをインストール
 ```
 sudo apt update
@@ -28,6 +32,7 @@ sudo ufw allow proto tcp from any to any port 443
 ```
 
 ### ルータのポート開放
+- 443ポートを開放し、raspberry piにフォワードする
 
 ### Let's Encryptインストール
 ```
