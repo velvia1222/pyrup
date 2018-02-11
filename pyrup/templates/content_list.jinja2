@@ -11,24 +11,31 @@
         return confirmRemove();
     }
     function loadPhoto(image_file_id) {
-        var photoDiv = document.getElementById("photo_" + image_file_id);
         var imageUrl = "/download?mode=inline&file_id=" + image_file_id;
-        var options = {
-            maxWidth: window.innerWidth * 0.8,
-            maxHeight: window.innerHeight * 0.9,
-            canvas: true,
-            orientation: true};
-        loadImage(
-            imageUrl,
-            function (img) {
-                if (img.type === "error") {
-                    console.log("Error loading image" + imageUrl);
-                } else {
-                    photoDiv.appendChild(img);
-                }
-            },
-            options
-        );
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', imageUrl, true);
+        xhr.responseType = 'blob';
+        xhr.onload = function(e) {
+            var blob = this.response;
+            var photoDiv = document.getElementById("photo_" + image_file_id);
+            var options = {
+                maxWidth: window.innerWidth * 0.8,
+                maxHeight: window.innerHeight * 0.9,
+                canvas: true,
+                orientation: true};
+            loadImage(
+                blob,
+                function (img) {
+                    if (img.type === "error") {
+                        console.log("Error loading image: " + imageUrl);
+                    } else {
+                        photoDiv.appendChild(img);
+                    }
+                },
+                options
+            );
+        };
+        xhr.send();
     }
 </script>
 {% endblock head %}
