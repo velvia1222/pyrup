@@ -45,19 +45,18 @@ sudo ./certbot-auto certonly --standalone
 sudo uwsgi --ini-paste /usr/local/src/pyrup/production.ini
 ```
 
-### Screenshots
+## Screenshots
 - ログイン画面
 <img width="320" src="https://user-images.githubusercontent.com/20614266/36626045-90ae73ea-196e-11e8-9e25-5210788833c9.png">
 - サイト一覧
-<img width="292" alt="2018-02-24 10 49 03" src="https://user-images.githubusercontent.com/20614266/36626079-869a6fac-196f-11e8-9ddb-80babea95206.png">
+<img width="292" src="https://user-images.githubusercontent.com/20614266/36626079-869a6fac-196f-11e8-9ddb-80babea95206.png">
 - ページ一覧
-<img width="270" alt="2018-02-24 10 56 57" src="https://user-images.githubusercontent.com/20614266/36626086-b5e6f67c-196f-11e8-9146-4263c7a977b8.png">
+<img width="270" src="https://user-images.githubusercontent.com/20614266/36626086-b5e6f67c-196f-11e8-9146-4263c7a977b8.png">
 - コンテンツ一覧
-<img width="602" alt="2018-02-24 10 57 27" src="https://user-images.githubusercontent.com/20614266/36626087-cf8bab4a-196f-11e8-9e43-be73cf388939.png">
-<img width="510" alt="2018-02-24 10 57 43" src="https://user-images.githubusercontent.com/20614266/36626103-ef52f46a-196f-11e8-90cf-2aee58d3c2e0.png">
+<img src="https://user-images.githubusercontent.com/20614266/36626271-51ed8092-1973-11e8-8cbc-9cb31b2be212.png">
 - サイト追加
-<img width="242" alt="2018-02-24 10 58 07" src="https://user-images.githubusercontent.com/20614266/36626114-0d7a019a-1970-11e8-8eab-64d0d70c6c13.png">
+<img width="242" src="https://user-images.githubusercontent.com/20614266/36626114-0d7a019a-1970-11e8-8eab-64d0d70c6c13.png">
 - ページ追加
-<img width="243" alt="2018-02-24 10 58 30" src="https://user-images.githubusercontent.com/20614266/36626119-1d9b1c76-1970-11e8-841d-dec5973b81fc.png">
+<img width="243" src="https://user-images.githubusercontent.com/20614266/36626119-1d9b1c76-1970-11e8-841d-dec5973b81fc.png">
 - コンテンツ追加
-<img width="301" alt="2018-02-24 10 58 56" src="https://user-images.githubusercontent.com/20614266/36626123-2c9f6470-1970-11e8-8838-e22dc6b0eb8b.png">
+<img width="301" src="https://user-images.githubusercontent.com/20614266/36626123-2c9f6470-1970-11e8-8838-e22dc6b0eb8b.png">
