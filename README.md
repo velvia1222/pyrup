@@ -48,15 +48,21 @@ sudo uwsgi --ini-paste /usr/local/src/pyrup/production.ini
 ## Screenshots
 - ログイン画面
 <img width="320" src="https://user-images.githubusercontent.com/20614266/36626045-90ae73ea-196e-11e8-9e25-5210788833c9.png">
+
 - サイト一覧
 <img width="292" src="https://user-images.githubusercontent.com/20614266/36626079-869a6fac-196f-11e8-9ddb-80babea95206.png">
+
 - ページ一覧
 <img width="270" src="https://user-images.githubusercontent.com/20614266/36626086-b5e6f67c-196f-11e8-9146-4263c7a977b8.png">
+
 - コンテンツ一覧
 <img src="https://user-images.githubusercontent.com/20614266/36626271-51ed8092-1973-11e8-8cbc-9cb31b2be212.png">
+
 - サイト追加
 <img width="242" src="https://user-images.githubusercontent.com/20614266/36626114-0d7a019a-1970-11e8-8eab-64d0d70c6c13.png">
+
 - ページ追加
 <img width="243" src="https://user-images.githubusercontent.com/20614266/36626119-1d9b1c76-1970-11e8-841d-dec5973b81fc.png">
+
 - コンテンツ追加
 <img width="301" src="https://user-images.githubusercontent.com/20614266/36626123-2c9f6470-1970-11e8-8838-e22dc6b0eb8b.png">
