@@ -47,4 +47,4 @@ sudo uwsgi --ini-paste /usr/local/src/pyrup/production.ini
 
 ### Screenshots
 - ログイン画面
-<img src="https://user-images.githubusercontent.com/20614266/36626045-90ae73ea-196e-11e8-9e25-5210788833c9.png">
+<img width="320" src="https://user-images.githubusercontent.com/20614266/36626045-90ae73ea-196e-11e8-9e25-5210788833c9.png">
